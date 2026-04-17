@@ -1,28 +1,25 @@
 pipeline {
     agent any
+    options {
+        timestamps()
+    }
 
     stages {
-        stage('Clone') {
+        stage('Checkout') {
             steps {
-                echo "Cloning..."
+                checkout scm
             }
         }
 
         stage('Build') {
             steps {
-                sh 'echo Building project'
+                sh 'cargo build --release'
             }
         }
 
         stage('Test') {
             steps {
-                sh 'echo Running tests'
-            }
-        }
-
-        stage('Deploy') {
-            steps {
-                sh 'echo Deploying app'
+                sh 'cargo test'
             }
         }
     }
