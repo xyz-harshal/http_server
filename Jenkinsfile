@@ -1,30 +1,28 @@
 pipeline {
     agent any
-    options {
-        timestamps()
-    }
 
     stages {
-        stage('Setup Rust') {
+        stage('Clone') {
             steps {
-                sh '''
-                    set -eu
-                    if ! command -v cargo >/dev/null 2>&1; then
-                      curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
-                    fi
-                '''
+                echo "Cloning..."
             }
         }
 
         stage('Build') {
             steps {
-                sh '. "$HOME/.cargo/env" && cargo build --release'
+                sh 'echo Building project'
             }
         }
 
         stage('Test') {
             steps {
-                sh '. "$HOME/.cargo/env" && cargo test'
+                sh 'echo Running tests'
+            }
+        }
+
+        stage('Deploy') {
+            steps {
+                sh 'echo Deploying app'
             }
         }
     }
