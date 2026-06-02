@@ -4,25 +4,25 @@ pipeline {
     stages {
         stage('Clone') {
             steps {
-                echo "Cloning..."
+                echo "Cloning----"
             }
         }
 
         stage('Build') {
             steps {
-                sh 'echo Building project'
+                sh 'echo Building project----'
             }
         }
 
         stage('Test') {
             steps {
-                sh 'echo Running tests'
+                sh 'echo Running tests----'
             }
         }
 
         stage('Deploy') {
             steps {
-                sh 'echo Deploying app'
+                sh 'echo Deploying app----'
             }
         }
     }
